@@ -4,9 +4,6 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const navbarStyle = {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
     padding: "10px 20px",
     backgroundColor: "#f0f4f7", // Color de fondo claro
     borderBottom: "2px solid #e0e0e0",
@@ -36,23 +33,33 @@ const Navbar = () => {
 
   return (
     <nav style={navbarStyle}>
-      <button>Change theme</button>
-      <Link to="/home" style={logoStyle}>
-        MedicalApp
-      </Link>
-      <div style={navLinksStyle}>
-        <Link to="/home" style={linkStyle}>
-          Home
+      <div
+        style={{
+          maxWidth: "1250px",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          margin: "0 auto",
+        }}
+      >
+        <button>Change theme</button>
+        <Link to="/home" style={logoStyle}>
+          MedicalApp
         </Link>
-        <Link to="/contact" style={linkStyle}>
-          Contact
-        </Link>
-        {/* <Link to="/detail" style={linkStyle}>
+        <div style={navLinksStyle}>
+          <Link to="/home" style={linkStyle}>
+            Home
+          </Link>
+          <Link to="/contact" style={linkStyle}>
+            Contact
+          </Link>
+          {/* <Link to="/detail" style={linkStyle}>
           Detail
         </Link> */}
-        <Link to="/favs" style={linkStyle}>
-          Favs
-        </Link>
+          <Link to="/favs" style={linkStyle}>
+            Favs
+          </Link>
+        </div>
       </div>
     </nav>
   );

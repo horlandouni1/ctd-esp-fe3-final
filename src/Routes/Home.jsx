@@ -16,15 +16,22 @@ const Home = () => {
     console.log(dentist.data);
     console.log("users", state.users);
     setDentist(dentist.data);
-    dispatch({
-      type: ACTIONS.SET_USERS,
-      payload: dentist.data,
-    });
   };
 
   useEffect(() => {
     getDentists();
   }, []);
+  const isFavorite = (userId) => {
+    return state.favorites.some((user) => user.id === userId);
+  };
+
+  const handleFavoriteClick = (user) => {
+    if (isFavorite(user.id)) {
+      dispatch({ type: ACTIONS.REMOVE_FROM_FAVORITES, payload: user.id });
+    } else {
+      dispatch({ type: ACTIONS.ADD_TO_FAVORITES, payload: user });
+    }
+  };
   return (
     <main
       className=""
@@ -43,7 +50,15 @@ const Home = () => {
       >
         {/* Aqui deberias renderizar las cards */}
         {dentist.map((e) => (
-          <Card key={e.id} id={e.id} name={e.name} username={e.username} />
+          <Card
+            key={e.id}
+            id={e.id}
+            name={e.name}
+            username={e.username}
+            user={e}
+            handleFavoriteClick={handleFavoriteClick}
+            isFavorite={isFavorite}
+          />
         ))}
       </div>
     </main>

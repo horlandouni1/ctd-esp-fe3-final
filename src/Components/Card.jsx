@@ -1,9 +1,17 @@
 import { useNavigate } from "react-router";
-import imgMedico from "../assets/images/img-medico.jpg";
-const Card = ({ name, username, id }) => {
+import imgMedico from "../assets/images/doctor.jpg";
+const Card = ({
+  name,
+  username,
+  id,
+  handleFavoriteClick,
+  isFavorite,
+  user,
+}) => {
   const navigate = useNavigate();
-  const addFav = () => {
+  const addFav = (user) => {
     // Aqui iria la logica para agregar la Card en el localStorage
+    handleFavoriteClick(user);
   };
   const viewDetail = () => {
     navigate(`/detail/${id}`);
@@ -33,8 +41,8 @@ const Card = ({ name, username, id }) => {
           ver detalle
         </button>
         {/* Ademas deberan integrar la logica para guardar cada Card en el localStorage */}
-        <button onClick={addFav} className="favButton">
-          Add fav
+        <button onClick={() => addFav(user)} className="favButton">
+          {isFavorite(user.id) ? "Quitar de favoritos" : "Añadir a favoritos"}
         </button>
       </div>
     </div>
