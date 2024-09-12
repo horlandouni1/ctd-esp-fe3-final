@@ -1,16 +1,61 @@
-import React from 'react'
+import { Link } from "react-router-dom";
 
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const Navbar = () => {
+  const navbarStyle = {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: "10px 20px",
+    backgroundColor: "#f0f4f7", // Color de fondo claro
+    borderBottom: "2px solid #e0e0e0",
+  };
+
+  const logoStyle = {
+    fontSize: "1.5rem",
+    color: "#007BFF", // Color de acento para el logo
+    textDecoration: "none",
+    fontWeight: "bold",
+  };
+
+  const navLinksStyle = {
+    display: "flex",
+    gap: "20px",
+  };
+
+  const linkStyle = {
+    color: "#333", // Color de texto
+    textDecoration: "none",
+    fontSize: "1.1rem",
+    fontWeight: "500",
+    padding: "8px 16px",
+    borderRadius: "4px",
+    transition: "background-color 0.3s",
+  };
 
   return (
-    <nav>
-      {/* Aqui deberan agregar los liks correspondientes a las rutas definidas */}
-      {/* Deberan implementar ademas la logica para cambiar de Theme con el button */}
+    <nav style={navbarStyle}>
       <button>Change theme</button>
+      <Link to="/home" style={logoStyle}>
+        MedicalApp
+      </Link>
+      <div style={navLinksStyle}>
+        <Link to="/home" style={linkStyle}>
+          Home
+        </Link>
+        <Link to="/contact" style={linkStyle}>
+          Contact
+        </Link>
+        {/* <Link to="/detail" style={linkStyle}>
+          Detail
+        </Link> */}
+        <Link to="/favs" style={linkStyle}>
+          Favs
+        </Link>
+      </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
