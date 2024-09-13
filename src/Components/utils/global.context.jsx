@@ -9,7 +9,7 @@ export const ACTIONS = {
 
 // Define el estado inicial
 export const initialState = {
-  theme: "ss",
+  theme: "light",
   favorites: JSON.parse(localStorage.getItem("favorites")) || [],
 };
 

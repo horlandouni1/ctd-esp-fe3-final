@@ -1,11 +1,21 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { ACTIONS, ContextGlobal } from "./utils/global.context";
 
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const Navbar = () => {
+  const { state, dispatch } = useContext(ContextGlobal);
+  const isDarkTheme = state.theme === "dark";
+  const toggleTheme = () => {
+    dispatch({
+      type: ACTIONS.SET_THEME,
+      payload: state.theme === "dark" ? "light" : "dark",
+    });
+  };
   const navbarStyle = {
     padding: "10px 20px",
-    backgroundColor: "#f0f4f7", // Color de fondo claro
+    backgroundColor: isDarkTheme ? "#333" : "#f0f4f7", // Color de fondo claro
     borderBottom: "2px solid #e0e0e0",
   };
 
@@ -22,7 +32,7 @@ const Navbar = () => {
   };
 
   const linkStyle = {
-    color: "#333", // Color de texto
+    color: isDarkTheme ? "#fff" : "#333", // Color de texto
     textDecoration: "none",
     fontSize: "1.1rem",
     fontWeight: "500",
@@ -42,7 +52,9 @@ const Navbar = () => {
           margin: "0 auto",
         }}
       >
-        <button>Change theme</button>
+        <button onClick={toggleTheme}>
+          Switch to {state.theme === "dark" ? "light" : "dark"} theme
+        </button>
         <Link to="/home" style={logoStyle}>
           MedicalApp
         </Link>

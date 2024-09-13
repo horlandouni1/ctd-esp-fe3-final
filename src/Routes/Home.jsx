@@ -7,6 +7,7 @@ import axios from "axios";
 
 const Home = () => {
   const { state, dispatch } = useContext(ContextGlobal);
+  const isDarkTheme = state.theme === "dark";
   console.log(state.theme);
   const [dentist, setDentist] = useState([]);
   const getDentists = async () => {
@@ -35,9 +36,14 @@ const Home = () => {
   return (
     <main
       className=""
-      style={{ width: "100%", maxWidth: "1250px", margin: "0 auto" }}
+      style={{
+        width: "100%",
+        maxWidth: "1250px",
+        margin: "0 auto",
+        backgroundColor: isDarkTheme ? "#411818" : "#fff",
+      }}
     >
-      <h1>Home</h1>
+      <h1 style={{ color: isDarkTheme ? "#fff" : "#333" }}>Home</h1>
       <div
         className="card-grid"
         style={{

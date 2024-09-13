@@ -6,6 +6,7 @@ import { ACTIONS, ContextGlobal } from "../Components/utils/global.context";
 
 const Favs = () => {
   const { state, dispatch } = useContext(ContextGlobal);
+  const isDarkTheme = state.theme === "dark";
   const handleRemoveFavorite = (userId) => {
     dispatch({ type: ACTIONS.REMOVE_FROM_FAVORITES, payload: userId });
   };
@@ -26,7 +27,11 @@ const Favs = () => {
         className=""
         style={{ width: "100%", maxWidth: "1250px", margin: "0 auto" }}
       >
-        <h1>Favorites dentists</h1>
+        <h1
+          style={{ color: isDarkTheme ? "#fff" : "#333", marginBottom: "20px" }}
+        >
+          Favorites dentists
+        </h1>
         <div
           className="card-grid"
           style={{

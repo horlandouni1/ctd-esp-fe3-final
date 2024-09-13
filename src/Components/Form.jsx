@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { ContextGlobal } from "./utils/global.context";
 
 const Form = () => {
+  const { state } = useContext(ContextGlobal);
+  const isDarkTheme = state.theme === "dark";
   //Aqui deberan implementar el form completo con sus validaciones
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -42,7 +45,12 @@ const Form = () => {
         <div style={{ marginBottom: "15px" }}>
           <label
             htmlFor="name"
-            style={{ display: "block", marginBottom: "5px" }}
+            style={{
+              display: "block",
+              marginBottom: "5px",
+              color: isDarkTheme ? "#fff" : "#333",
+              textAlign: "left",
+            }}
           >
             Nombre completo:
           </label>
@@ -63,7 +71,12 @@ const Form = () => {
         <div style={{ marginBottom: "15px" }}>
           <label
             htmlFor="email"
-            style={{ display: "block", marginBottom: "5px" }}
+            style={{
+              display: "block",
+              marginBottom: "5px",
+              color: isDarkTheme ? "#fff" : "#333",
+              textAlign: "left",
+            }}
           >
             Email:
           </label>
